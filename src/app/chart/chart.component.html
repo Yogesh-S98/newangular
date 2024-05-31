@@ -1,0 +1,19 @@
+<div>
+    <!-- <div class="card flex justify-content-center"> -->
+        <div class="p-5 pb-0 pt-0">
+        <p-multiSelect 
+            [options]="labels" 
+            [(ngModel)]="selectedLabel" 
+            placeholder="Select Cities"
+            (onChange)="updateValue()"
+            display="chip"
+            (onClear)="clearValues()"
+            [showClear]="true" />
+        </div>
+    <!-- </div> -->
+    <div class="card flex justify-content-center p-5 m-5" style="width: 300px;">
+    <p-chart type="doughnut" [data]="data" [options]="options" />
+    </div>
+    <div *ngFor="let item of contact">
+    </div>
+</div>

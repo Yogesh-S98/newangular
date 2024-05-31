@@ -1,0 +1,85 @@
+.calendar-body {
+    width: 500px;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    margin: 10px;
+    .calendar-header {
+        display: flex;
+        align-items: center;
+        padding: 25px 30px 10px;
+        justify-content: space-between;
+        
+        .icons i {
+            margin-left: 10px;
+            padding: 0 1px;
+            text-align: center;
+            height: 38px;
+            width: 38px;
+            line-height: 38px;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        .icons i:hover {
+            background: #f2f2f2;
+        }
+        .icons i:last-child {
+            margin-right: -10px;
+        }
+    }
+    .calendar-weekdays {
+        padding: 20px;
+        .days li {
+            z-index: 1;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+        .days li.inactive {
+            color: #aaa;
+        }
+        .days li.active {
+            color: #fff;
+        }
+        .days li.today::before {
+            height: 40px;
+            width: 40px;
+            top: 50%;
+            left: 50%;
+            z-index: -1;
+            border-radius: 50px;
+            background: gray;
+            color: black;
+            transform: translate(-50% , -50%);
+        }
+        .days li.today {
+            z-index: 1;
+            cursor: pointer;
+        }
+        .days li::before {
+            position: absolute;
+            content: '';
+            height: 40px;
+            width: 40px;
+            top: 50%;
+            left: 50%;
+            z-index: -1;
+            border-radius: 50px;
+            transform: translate(-50% , -50%);
+        }
+        .days li:hover::before {
+            background: #f2f2f2;
+        }
+        .days li.active::before {
+            background: #8066ff;
+        }
+        ul{
+            display: flex;
+            list-style: none;
+            flex-wrap: wrap;
+            text-align: center;
+            li {
+                position: relative;
+                width: calc(100% / 7);
+            }
+        }
+    }
+}

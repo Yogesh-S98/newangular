@@ -1,0 +1,46 @@
+
+<div class="p-5">
+    <p-toast></p-toast>
+<app-user></app-user>
+<!-- <div>
+    <div class="number-field">
+    <div id="card-number" style="width: 350px;"></div>
+    <div style="display: flex;justify-content: end;">
+    <div *ngIf="!cardCom" style="display: flex;">
+        <img style="padding-left: 5px;" src="../assets/cardIcons/visa.svg" width="40" />
+        <img style="padding-left: 5px;" src="../assets/cardIcons/mastercard.svg" width="40" />
+        <img style="padding-left: 5px;" src="../assets/cardIcons/discover.svg" width="40" />
+    </div>
+        <img *ngIf="cardType" style="padding-left: 5px;" [src]="'../assets/cardIcons/' + cardType + '.svg'" width="40" />
+    
+    </div>
+    </div>
+    <div style='color: red;'>{{numberErr}}</div>
+    <div style="display: flex;">
+        <div class="expiry-field">
+        <div  id="card-expiry"></div>
+    </div>
+    <div class="expiry-field">
+    <div  id="card-cvc"></div>
+    </div>
+    </div>
+    <div>
+    <div style="color: red;width: 200px;">{{expiryErr}}</div>
+    <div style="color: red;width: 200px;">{{cvcErr}}</div>
+    </div>
+    <div>
+        <button (click)="submitCard()">Submit</button>
+    </div>
+</div>
+<div>
+    <div id="card-element" style="width: 500px;"></div>
+    <div>
+        <button (click)="submitCard()">Submit</button>
+    </div>
+</div> -->
+<app-set-table></app-set-table>
+<app-calendar></app-calendar>
+<app-chart></app-chart>
+</div>
+<p-button (onClick)="showSuccess()"></p-button>
+<router-outlet></router-outlet>

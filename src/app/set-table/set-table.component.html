@@ -1,0 +1,62 @@
+<div>
+    <div class="p-3 d-flex justify-content-end">
+    <p-button (click)="addUser()" class="button mr-3">Add User</p-button>
+    <p-button (click)="updateList()">Update List</p-button>
+    </div>
+    <div *ngIf="list.length">
+<app-table
+    [config]="config"
+    [responseData]="list"
+    (updateList)="updateFromTable($event)"
+    (actionHappens)="actionFromTable($event)"
+></app-table>
+</div>
+<p-dialog 
+    [header]="userId ? 'Update User' : 'Create User'" 
+    [modal]="true"
+    [(visible)]="visible"
+    [draggable]="false"
+    >
+    <div [formGroup]="userForm">
+        <div class="col">
+        <input pInputText
+            id="name" placeholder="Name" type="text" formControlName="name" (change)="updateValue()"/>
+        </div>
+        <div *ngIf="userForm.controls['name'].invalid && (userForm.controls['name'].dirty || userForm.controls['name'].touched)">
+            <div *ngIf="userForm.controls['name'].errors">
+            <div style="color: red;" class="pl-2">Please enter username</div>
+          </div>
+        </div>
+        <div class="col">
+        <input pInputText id="category" placeholder="Category" type="text" formControlName="category">
+        </div>
+        <div *ngIf="userForm.controls['category'].invalid && (userForm.controls['category'].dirty || userForm.controls['category'].touched)">
+            <div *ngIf="userForm.controls['category'].errors">
+            <div style="color: red;" class="pl-2">Please enter category</div>
+          </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <p-button (onClick)="submitForm()" [disabled]="userForm.invalid || validForm(userForm)" >{{buttonName}}</p-button>
+    </div>
+</p-dialog>
+<p-dialog
+    header="Title"
+  [modal]="true"
+  [(visible)]="deleteAlert"
+  [style]="{ width: '500px' }"
+  [draggable]="false"
+  class="delete-dialog"
+>
+    <!-- <p-header>Delete</p-header> -->
+    <div class="p-5">
+    <div class="col">
+        Are you sure to delete the {{deleteList.length > 0 ? 'All users' : 'user'}}
+    </div>
+    </div>
+    <div class="d-flex justify-content-end">
+        <p-button class="confirm" (onClick)="cancelDelete()">Cancel</p-button>
+        <p-button class="delete" (onClick)="deleteUser()">Yes, Delete</p-button>
+    </div>
+</p-dialog>
+</div>

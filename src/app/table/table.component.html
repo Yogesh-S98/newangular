@@ -1,0 +1,93 @@
+<p-table 
+    [value]="records" 
+    [columns]="cols" 
+    [rows]="5"
+    [paginator]="records.length > 5"
+    [(selection)]="selectedField"
+    styleClass="p-datatable-responsive p-datatable-striped app-table"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [showCurrentPageReport]="true"
+    [rowHover]="true"
+    [tableStyle]="{'min-width': '50rem', 'padding': '10px'}">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th>
+                    <p-tableHeaderCheckbox />
+                </th>
+                <!-- <th style="width:3rem"></th> -->
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template 
+            pTemplate="body" 
+            let-rowData 
+            let-columns="columns" 
+            let-index="rowIndex">
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="rowData" />
+                    </td>
+                    <!-- <td>
+                        <span class="pi pi-bars" pReorderableRowHandle></span>
+                    </td> -->
+                    <ng-container *ngFor="let col of columns">
+                        <td
+                            *ngIf="col.type !== 'actions'; else actionColumn"
+                            (click)="actionClick(col.type, rowData)"
+                        >
+                            {{rowData[col.field]}}
+                        </td>
+                        <ng-template #actionColumn>
+                            <td>
+                              <div>
+                                <span
+                                  *ngFor="let action of col.actions"
+                                  class="listing-action-button"
+                                >
+                                  <span *ngIf="actionData(rowData, action) as actionInfo">
+                                    <i
+                                      *ngIf="actionInfo && !actionInfo.actionList && actionInfo.icon !== 'pi pi-eye'"
+                                      class="{{ actionInfo.icon }}"
+                                      [ngClass]="
+                                        actionInfo.icon === 'pi pi-trash'
+                                          ? 'delete-icon-style'
+                                          : 'edit-icon-style'
+                                      "
+                                      (click)="actionClick(actionInfo.type, rowData)"
+                                    ></i>
+                                    <i
+                                    *ngIf="actionInfo.actionList"
+                                      (click)="options.toggle($event)"
+                                      [ngClass]="actionInfo.icon"
+                                      class="pl-3 cursor-pointer"
+                                    >
+                                    </i>
+                                      <p-overlayPanel
+                                        #options
+                                        styleClass="pOverlay"
+                                        [style]="{ width: 'fit-content' }"
+                                      >
+                                        <ng-template pTemplate="content">
+                                          <div
+                                            *ngFor="let item of actionInfo.actionList; index as i"
+                                            class="memberEdit p-grid">
+                                            <div
+                                              (click)="actionClick(item.label, rowData); options.hide();"
+                                              [ngClass]="actionInfo.actionList.length - 1 !== i ? 'pb-2' : ''">
+                                              {{item.label}}
+                                            </div>
+                                          </div>
+                                        </ng-template>
+                                      </p-overlayPanel>
+                                    &nbsp;
+                                  </span>
+                                </span>
+                              </div>
+                            </td>
+                          </ng-template>
+                    </ng-container>
+                </tr>
+        </ng-template>
+</p-table>
