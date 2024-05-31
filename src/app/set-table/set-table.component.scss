@@ -1,0 +1,31 @@
+.delete-dialog {
+::ng-deep {
+    .p-dialog .p-dialog-header {
+        display: none !important;
+      }
+    .p-dialog .p-dialog-content:last-of-type {
+        border-radius: 0px !important;
+    }
+}
+::ng-deep {
+.confirm, .delete {
+    .p-button {
+        border: none !important;
+    }
+    .p-button:focus {
+        box-shadow: none !important;
+    }
+}
+.confirm {
+    .p-button {
+        background: white !important;
+        color: black !important;
+    }
+}
+.delete {
+    .p-button {
+        background: red !important;
+    }
+}
+}
+}

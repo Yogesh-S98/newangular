@@ -1,0 +1,12 @@
+
+::ng-deep {    
+    .p-multiselect {
+        height: 50px !important;
+    }
+        .p-multiselect-items {
+        padding-left: 0px !important;
+    }
+    .p-multiselect.p-multiselect-chip .p-multiselect-token {
+        margin-right: 10px !important;
+    }
+}

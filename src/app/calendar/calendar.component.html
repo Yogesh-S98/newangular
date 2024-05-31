@@ -1,0 +1,43 @@
+<div>
+    <!-- <div class="daysCol-div">
+        
+        <div *ngFor="let item of dayNames" class="days-div">
+            {{item}}
+        </div>
+        
+    </div> -->
+<div class="calendar-body">
+    <div class="calendar-header">
+        <div class="current-date pl-2">
+            <!-- {{currentdate}} -->
+            {{showMonth()}}
+        </div>
+        <div class="icons">
+            <i (click)="monthDec()" class="pi pi-angle-left"></i>
+            <i (click)="monthInc()" class="pi pi-angle-right"></i>
+        </div>
+    </div>
+    <div class="calendar-weekdays">
+        <ul class="weeks" style="padding-left: 0px;">
+            <li *ngFor="let item of weeks">
+                {{item}}
+            </li>
+        </ul>
+        
+        <ul class="days" style="padding-left: 0px;">
+            <li *ngFor="let item of daysArr;index as i"
+                [class.today]="isToday(item)">
+                <!-- <li *ngFor="let day of daysArr" 
+                    >
+                    {{ showDate(day).day }}
+                </li> -->
+               <div *ngIf="!showDate(item).day" pTooltip="{{showTooltip(showDate(item))}}"
+               tooltipPosition="bottom">
+                <div (click)="copy(showDate(item))">{{showDate(item)}}</div></div>
+               <div *ngIf="showDate(item).day" (click)="shiftMonth(i, showDate(item).day)" style="color: gray;">
+                {{showDate(item).day}}</div>
+            </li>
+        </ul>
+    </div>
+</div>
+</div>
